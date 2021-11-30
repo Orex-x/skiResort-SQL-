@@ -56,7 +56,7 @@ create or replace procedure Rental_Outfit_Insert ( p_Price int, p_Date_Issue tim
 language plpgsql
 as $$
 
-DECLARE have_record int=count(*) from Rental_Outfit
+DECLARE have_record int := count(*) from Rental_Outfit
 where Price = p_Price and Date_Issue = p_Date_Issue and Return_Date = p_Return_Date and Outfit_ID = p_Outfit_ID;
 
 begin
@@ -147,8 +147,7 @@ $$;
 create or replace procedure Status_Card_Delete(p_ID_Status_Card int)
 language plpgsql
 as $$
-	DECLARE
-have_record_Bonus_Card int := count(*) from Bonus_Card
+	DECLARE have_record_Bonus_Card int := count(*) from Bonus_Card
 	where Status_Card_ID = p_ID_Status_Card;
 	have_record_Status_Card_Track int := count(*) from Status_Card_Track
 	where Status_Card_ID = p_ID_Status_Card;
@@ -171,7 +170,7 @@ create or replace procedure Bonus_Card_Insert ( p_Balance int, p_Tariff varchar(
 language plpgsql
 as $$
 
-DECLARE have_record int=count(*) from Bonus_Card
+DECLARE have_record int := count(*) from Bonus_Card
 where Balance = p_Balance and Tariff = p_Tariff and Status_Card_ID = p_Status_Card_ID;
 
 begin
@@ -230,7 +229,7 @@ create or replace procedure Position_Insert ( p_Title varchar(50), p_Post_Price 
 language plpgsql
 as $$
 
-DECLARE have_record int=count(*) from Position
+DECLARE have_record int := count(*) from Position
 where Title = p_Title and Post_Price = p_Post_Price and Description = p_Description and Responsibilities = p_Responsibilities;
 
 begin
@@ -294,7 +293,7 @@ create or replace procedure Employee_Insert ( p_First_Name varchar (30), p_Secon
 language plpgsql
 as $$
 
-DECLARE have_record int=count(*) from Employee
+DECLARE have_record int := count(*) from Employee
 where First_Name = p_First_Name and Second_Name = p_Second_Name and Middle_Name = p_Middle_Name
 and Phone_Number = p_Phone_Number and Email = p_Email and Age = p_Age
 and INN = p_INN and SNILS = p_SNILS and Position_ID = p_Position_ID and Post_Part = p_Post_Part;
@@ -374,7 +373,7 @@ create or replace procedure Cableway_Insert ( p_Roominess int, p_Price int)
 language plpgsql
 as $$
 
-DECLARE have_record int=count(*) from Cableway
+DECLARE have_record int := count(*) from Cableway
 where Roominess = p_Roominess and Price = p_Price;
 begin
 if have_record>0 then
@@ -430,7 +429,7 @@ create or replace procedure Track_Insert ( p_Complexity int, p_Title varchar(50)
 language plpgsql
 as $$
 
-DECLARE have_record int=count(*) from Track
+DECLARE have_record int := count(*) from Track
 where Complexity = p_Complexity and Title = p_Title and Employee_ID = p_Employee_ID and Cableway_ID = p_Cableway_ID;
 begin
 if have_record>0 then
@@ -488,7 +487,7 @@ create or replace procedure Status_Card_Track_Insert ( p_Track_Permission boolea
 language plpgsql
 as $$
 
-DECLARE have_record int=count(*) from Status_Card_Track
+DECLARE have_record int := count(*) from Status_Card_Track
 where Track_Permission = p_Track_Permission and Track_ID = p_Track_ID and Status_Card_ID = p_Status_Card_ID;
 begin
 if have_record>0 then
@@ -541,7 +540,7 @@ create or replace procedure Client_Insert ( p_First_Name varchar (30), p_Second_
 language plpgsql
 as $$
 
-DECLARE have_record int=count(*) from Client
+DECLARE have_record int := count(*) from Client
 where First_Name = p_First_Name and Second_Name = p_Second_Name and Middle_Name = p_Middle_Name
 and Phone_Number = p_Phone_Number and Email = p_Email and Age = p_Age
 and NumberDL = p_NumberDL and Bonus_Card_ID = p_Bonus_Card_ID;
@@ -562,7 +561,7 @@ create or replace procedure Client_Update(p_ID_Client int, p_First_Name varchar 
 											 p_Email varchar, p_Age int, p_NumberDL varchar(11), p_Bonus_Card_ID int)
 language plpgsql
 as $$
-	DECLARE have_record int=count(*) from Client
+	DECLARE have_record int := count(*) from Client
 	where First_Name = p_First_Name and Second_Name = p_Second_Name and Middle_Name = p_Middle_Name
 	and Phone_Number = p_Phone_Number and Email = p_Email and Age = p_Age
 	and NumberDL = p_NumberDL and Bonus_Card_ID = p_Bonus_Card_ID;
@@ -614,7 +613,7 @@ create or replace procedure Receipt_Insert ( p_Date_Of_Creation date, p_Employee
 language plpgsql
 as $$
 
-DECLARE have_record int=count(*) from Receipt
+DECLARE have_record int := count(*) from Receipt
 where Date_Of_Creation = p_Date_Of_Creation and Employee_ID = p_Employee_ID and Rental_Outfit_Client_ID = p_Rental_Outfit_Client_ID;
 begin
 if have_record>0 then
@@ -664,7 +663,7 @@ create or replace procedure Rental_Outfit_Client_Insert ( p_Employee_ID int, p_C
 language plpgsql
 as $$
 
-DECLARE have_record int=count(*) from Rental_Outfit_Client
+DECLARE have_record int := count(*) from Rental_Outfit_Client
 where Employee_ID = p_Employee_ID and Client_ID = p_Client_ID and Rental_Outfit_ID = p_Rental_Outfit_ID;
 begin
 if have_record>0 then

@@ -25,6 +25,7 @@ create table Trigger_History
     Date_Create date null default now(),
     TableName_ID int not null references TableName (ID_TableName)
 );
+
 select * from TableName;
 
 
