@@ -38,8 +38,10 @@ create table position
     id_position int not null auto_increment primary key,
     title varchar(50) not null unique,
     post_price decimal (38,2) null default 0.0 check (post_price >= 0.0),
+    description varchar(300) not null default '-',
     responsibilities varchar(300) not null default '-'
 );
+
 
 use test;
 create table employee

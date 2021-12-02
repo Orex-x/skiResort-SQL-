@@ -157,6 +157,21 @@ comment on column Client.NumberDL is 'Номер водительского уд
 comment on column Client.Bonus_Card_ID is 'Внешний ключ ссылающийся на карту клиента';
 
 
+create table Rental_Outfit_Client
+(
+    ID_Rental_Outfit_Client SERIAL not null constraint PK_Rental_Outfiet_Client primary key,
+    Employee_ID int not null references Employee (ID_Employee),
+    Client_ID int not null references Client (ID_Client),
+    Rental_Outfit_ID int not null references Rental_Outfit (ID_Rental_Outfit)
+);
+
+comment on table Rental_Outfit_Client is
+    'Таблица хранит в себе информацию о том, какой клиент взял какое снаряжение и какой сотрудник это оформил';
+comment on column Rental_Outfit_Client.Employee_ID is 'Внешний ключ ссылающийся на сотрудника выдавшего снаряжение';
+comment on column Rental_Outfit_Client.Client_ID is 'Внешний ключ ссылающийся на клиента';
+comment on column Rental_Outfit_Client.Rental_Outfit_ID is 'Внешний ключ ссылающийся на аренду сняряжения';
+
+
 create table Receipt
 (
     ID_Receipt SERIAL not null constraint PK_Receipt primary key,
@@ -170,17 +185,3 @@ comment on column Receipt.Employee_ID is 'Внешний ключ ссылающ
 comment on column Receipt.Rental_Outfit_Client_ID is 'Внешний ключ ссылающийся на услугу аренды';
 
 
-
-create table Rental_Outfit_Client
-(
-    ID_Rental_Outfit_Client SERIAL not null constraint PK_Rental_Outfiet_Client primary key,
-    Employee_ID int not null references Employee (ID_Employee),
-    Client_ID int not null references Client (ID_Client),
-    Rental_Outfit_ID int not null references Rental_Outfit (ID_Rental_Outfit)
-);
-
-comment on table Rental_Outfit_Client is
-	'Таблица хранит в себе информацию о том, какой клиент взял какое снаряжение и какой сотрудник это оформил';
-comment on column Rental_Outfit_Client.Employee_ID is 'Внешний ключ ссылающийся на сотрудника выдавшего снаряжение';
-comment on column Rental_Outfit_Client.Client_ID is 'Внешний ключ ссылающийся на клиента';
-comment on column Rental_Outfit_Client.Rental_Outfit_ID is 'Внешний ключ ссылающийся на аренду сняряжения';

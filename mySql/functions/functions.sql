@@ -1,27 +1,15 @@
 
-/*Задача1: Вывести информацию о заработанных, конкретным сотрудником денег, в зависимости от отработанных часов в месяц.*/
-use test;
-DELIMITER //
-create or replace function Employee_Ammount(p_Employee_ID int, p_Worked_Hours decimal(38,2))
-returns decimal(38,2)
-begin
-  declare count_money decimal(38,2);
-select sum((Post_Part*Post_Price*0.87)*(p_Worked_Hours/160)) into count_money from combination
-                                                                                       inner join post on ID_Post = Post_ID
-where Employee_ID =p_Employee_ID;
-return count_money;
-end;
 
 
 use test;
 DELIMITER //
-create or replace function employee_amount(p_id_employee int, p_worked_hours decimal (38,2))
+create function employee_amount(p_id_employee int, p_worked_hours decimal (38,2))
     returns decimal (38,2)
 
 begin
 declare count_money decimal (38,2);
 
-select sum((post_part*post_price*0.87)*(p_worked_hours/160)) into count_money into have_record from employee inner join position on id_position = position_id
+select sum((post_part*post_price*0.87)*(p_worked_hours/160)) into count_money from employee inner join position on id_position = position_id
 where id_employee = p_id_employee;
 return count_money;
 end;
@@ -58,9 +46,5 @@ where id_cableway = p_id_cableway;
 return count_money;
 end;
 
-
-
-
-Process finished with exit code 0
 
 

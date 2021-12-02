@@ -27,10 +27,6 @@ create table Trigger_History
 );
 
 select * from TableName;
-
-
-
-drop trigger trigger_Outfit ON Outfit cascade;
 ---------------------------------------------------------Outfit---------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION add_to_log_outfit() RETURNS TRIGGER AS $$
@@ -303,7 +299,7 @@ BEGIN
         log_info = ((select concat('delete employee; ',
                                    concat(OLD.First_Name,' ',OLD.Second_Name,' ',OLD.Middle_Name),
                                    'Status name: ', cast(title as varchar(50)),
-                                   concat('post name ',Title,', post price: ', cast(Post_Price as varchar(100)), 'post part: ', cast(NEW.Post_Part as varchar(100)))
+                                   concat('post name ',Title,', post price: ', cast(Post_Price as varchar(100)), 'post part: ', cast(OLD.Post_Part as varchar(100)))
                                 ) from Position where id_position = OLD.Position_ID)
         );
 
@@ -521,8 +517,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trigger_Employee AFTER INSERT OR UPDATE OR DELETE
-    ON Employee FOR EACH ROW EXECUTE PROCEDURE add_to_log_employee ();
+CREATE TRIGGER trigger_Client AFTER INSERT OR UPDATE OR DELETE
+    ON Client FOR EACH ROW EXECUTE PROCEDURE add_to_log_client ();
 
 
 ---------------------------------------------------------Receipt--------------------------------------------------------
